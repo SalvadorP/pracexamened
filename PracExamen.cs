@@ -13,11 +13,6 @@ namespace PracticaExamenED
         public double peso;
         public int edad;
 
-        public const int ERROR_ESTATURA = -1;
-        public const int ERROR_PESO = -1;
-        public const int ERROR_NOMBRE = 0;
-        public const int ERROR_EDAD = -1;
-
         public Persona() {
             this.nombre = "";
             this.altura = 0;
@@ -38,7 +33,7 @@ namespace PracticaExamenED
                 if (value != "") {
                     this.nombre = value;
                 } else {
-                    this.nombre = ERROR_NOMBRE.ToString();
+                    this.nombre = "";
                 }
             }
         }
@@ -50,7 +45,7 @@ namespace PracticaExamenED
                 if (value > 1) {
                     this.altura = value;
                 } else {
-                    this.altura = ERROR_ESTATURA;
+                    this.altura = 1;
                 }
             }
         }
@@ -61,7 +56,7 @@ namespace PracticaExamenED
                 if (value > 1) {
                     this.peso = value;
                 } else {
-                    this.peso = ERROR_PESO;
+                    this.peso = 1;
                 }
             }
         }
@@ -72,7 +67,7 @@ namespace PracticaExamenED
                 if (value > 0) {
                     this.edad = value;
                 } else {
-                    this.edad = ERROR_EDAD;
+                    this.edad = 1;
                 }
             }
         }
@@ -80,13 +75,14 @@ namespace PracticaExamenED
         public double imc() {
             double imc = 0.0;
             if (peso < 1) {
-                return Persona.ERROR_PESO;
+                return 1;
             }
             if (altura < 10) {
-                return Persona.ERROR_ESTATURA;
+                return 1;
             }
 
-            imc = (peso / ((altura/100) * (altura/100)) );
+            double alt = (((double) altura)/100);
+            imc = (peso / (alt*alt));
 
             return imc;
         }
@@ -104,7 +100,7 @@ namespace PracticaExamenED
                     estatura = "mayor de la media";
                 }
             } else {
-                estatura = Persona.ERROR_ESTATURA.ToString();
+                estatura = "";
             }
             return estatura;
         }
